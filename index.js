@@ -2,14 +2,18 @@ import express from "express"
 import mongoose from "mongoose"
 import bodyParser from "body-parser"
 import dotenv from "dotenv"
+import route from "./routes/employeeRoute.js"
 
 const app = express()
 app.use(bodyParser.json())
 
 dotenv.config()
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5001
 const MONGOURl = process.env.MONGO_URL
+
+
+app.use("/api/employees", route)
 
 mongoose.connect(MONGOURl).then(() => {
   console.log("Database Connected Successfully")
